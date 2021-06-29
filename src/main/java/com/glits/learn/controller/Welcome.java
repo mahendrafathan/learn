@@ -2,9 +2,11 @@ package com.glits.learn.controller;
 
 import java.util.*;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.glits.learn.dto.ErrorResp;
 import com.glits.learn.dto.WelcomeResp;
 
 @RestController
@@ -23,12 +25,16 @@ public class Welcome {
 
 	@GetMapping("/get/{name}")
 	public ResponseEntity<?> getMessageName(@PathVariable("name") String name) {
+		
 		for (WelcomeResp message : messages) {
 			if (message.getDeveloper().equals(name)) {
 				return ResponseEntity.ok().body(message);
 			}
 		}
-		return ResponseEntity.ok().body("Data Tidak Ditemukan");
+//		return ResponseEntity.badRequest().body(
+//				new ErrorResp("Data Tidak Ditemukan"));
+		return new ResponseEntity<ErrorResp>(new ErrorResp("Data Tidak Ditemukan"), 
+				HttpStatus.BAD_REQUEST);
 	}
 
 	@PostMapping(path = "/postMessage", consumes = "application/json")
