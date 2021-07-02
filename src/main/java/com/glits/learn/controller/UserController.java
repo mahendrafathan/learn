@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.glits.learn.dto.ErrorResp;
+import com.glits.learn.dto.SuccessResp;
 import com.glits.learn.dto.UserReq;
 import com.glits.learn.model.Users;
 import com.glits.learn.repository.UsersRepo;
@@ -53,6 +54,6 @@ public class UserController {
 			return new ResponseEntity<ErrorResp>(new ErrorResp(e.getMessage()), 
 				HttpStatus.BAD_REQUEST);
 		}
-		return ResponseEntity.ok().body(user);
+		return ResponseEntity.ok().body(new SuccessResp("User berhasil ditambah", 200));
 	}
 }

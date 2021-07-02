@@ -7,4 +7,5 @@ import com.glits.learn.model.Users;
 
 public interface UsersRepo extends JpaRepository<Users, Integer> {
 	public Users findByEmail(String email);
+//	public Users findById(Integer id);
 }
