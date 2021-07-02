@@ -15,6 +15,8 @@ public class Users {
 	private String address;
 	@Column(name = "email", unique = true)
 	private String email;
+	@Column(name = "password")
+	private String password;
 	
 	public Users(String name, String address, String email) {
 		setName(name);
